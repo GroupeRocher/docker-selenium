@@ -32,5 +32,6 @@ RUN  mkdir -p /opt/selenium \
 #========================================
 RUN sudo useradd seluser --shell /bin/bash --create-home \
   && sudo usermod -a -G sudo seluser \
+  && sudo sed -i "s/^Defaults *env_reset$/Defaults        !env_reset/" /etc/sudoers \
   && echo 'ALL ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers \
   && echo 'seluser:secret' | chpasswd
